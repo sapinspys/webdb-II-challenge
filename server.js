@@ -26,7 +26,7 @@ server.use("/api/zoos", zoosRouter);
 server.use("/api/bears", bearsRouter);
 
 
-// NON-EXISTANT ROUTES MIDDLEWARE:
+// DNE MIDDLEWARE:
 server.use(function(req, res) {
   res
     .status(404)
