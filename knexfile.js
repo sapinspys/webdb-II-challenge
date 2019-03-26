@@ -8,7 +8,6 @@ module.exports = {
       filename: './data/lambda.sqlite3'
     },
     useNullAsDefault: true, // new configuration for SQLite
-    debug: true,
   },
   
 };

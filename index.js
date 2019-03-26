@@ -10,7 +10,7 @@ const server = express();
 server.use(express.json());
 server.use(helmet());
 
-// CUSTOM MIDDLEWARE (LOGGER)
+// LOGGER MIDDLEWARE:
 server.use(function(req, res, next) {
   console.log(`[${new Date().toISOString()}] ${req.method} to ${req.url}`);
 
@@ -19,6 +19,13 @@ server.use(function(req, res, next) {
 
 // ENDPOINTS HERE:
 server.use("/api/zoos", zoosRouter)
+
+// NON-EXISTANT ROUTES MIDDLEWARE:
+server.use(function(req, res) {
+  res
+    .status(404)
+    .send("This route does not exist! Try /api/zoos or /api/bears.");
+});
 
 const port = 3300;
 server.listen(port, function() {
