@@ -9,5 +9,6 @@ module.exports = {
     },
     useNullAsDefault: true, // new configuration for SQLite
   },
+  
 };
 

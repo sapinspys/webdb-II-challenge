@@ -11,9 +11,15 @@ server.use(helmet());
 
 // endpoints here
 
-server.get('/', (req, res) => {
-  // get the roles from the database
-  res.send('Write code to retrieve all roles');
+server.get('/api/zoos', (req, res) => {
+  // get the zoos from the database
+  db('zoos')
+  .then(zoos => {
+    res.status(200).json(zoos);
+  })
+  .catch(errpr => {
+    res.status(500).json(error);
+  })
 });
 
 server.get('/:id', (req, res) => {
