@@ -28,9 +28,21 @@ server.get('/:id', (req, res) => {
   res.send('Write code to retrieve a role by id');
 });
 
-server.post('/', (req, res) => {
-  // add a role to the database
-  res.send('Write code to add a role');
+server.post('/api/zoos', (req, res) => {
+  const newZoo = req.body;
+
+  if (newZoo.name) {
+    db('zoos')
+    .insert(newZoo)
+    .then(id => {
+      res.status(201).json(id);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    })
+  } else {
+    res.status(400).json({ error: "Please provide a name for the zoo." })
+  }
 });
 
 server.put('/:id', (req, res) => {
