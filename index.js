@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const knex = require('knex');
+const knexConfig = require('./knexfile');
 
 const db = knex(knexConfig.development);
 
@@ -17,7 +18,7 @@ server.get('/api/zoos', (req, res) => {
   .then(zoos => {
     res.status(200).json(zoos);
   })
-  .catch(errpr => {
+  .catch(error => {
     res.status(500).json(error);
   })
 });
