@@ -13,7 +13,6 @@ server.use(helmet());
 // endpoints here
 
 server.get("/api/zoos", (req, res) => {
-  // get the zoos from the database
   db("zoos")
     .then(zoos => {
       res.status(200).json(zoos);
@@ -54,14 +53,37 @@ server.post("/api/zoos", (req, res) => {
   }
 });
 
-server.put("/:id", (req, res) => {
-  // update roles
-  res.send("Write code to modify a role");
+server.put("/api/zoos/:id", (req, res) => {
+  const changes = req.body;
+  const { id } = req.params;
+
+  db('zoos')
+    .where({ id })
+    .update(changes)
+    .then(count => {
+      res.status(200).json(count);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    })
 });
 
-server.delete("/:id", (req, res) => {
-  // remove roles (inactivate the role)
-  res.send("Write code to remove a role");
+server.delete("/api/zoos/:id", (req, res) => {
+  const { id } = req.params;
+
+  db('zoos')
+    .where({ id })
+    .del()
+    .then(count => {
+      if (count) {
+        res.status(200).json(count);
+      } else {
+        res.status(400).json({ message: 'Record not found.'})
+      }
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 const port = 3300;
