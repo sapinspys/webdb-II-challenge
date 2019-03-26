@@ -1,7 +1,7 @@
 const express = require("express");
 
 const zoosRouter = require("./routers/zoos-router.js");
-const postsRouter = require("./routers/bears-router.js")
+const bearsRouter = require("./routers/bears-router.js")
 
 const helmet = require("helmet");
 
@@ -18,7 +18,9 @@ server.use(function(req, res, next) {
 });
 
 // ENDPOINTS HERE:
-server.use("/api/zoos", zoosRouter)
+server.use("/api/zoos", zoosRouter);
+server.use("/api/bears", bearsRouter);
+
 
 // NON-EXISTANT ROUTES MIDDLEWARE:
 server.use(function(req, res) {
