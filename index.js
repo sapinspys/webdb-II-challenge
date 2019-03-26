@@ -10,8 +10,14 @@ const server = express();
 server.use(express.json());
 server.use(helmet());
 
-// endpoints here
+// CUSTOM MIDDLEWARE (LOGGER)
+server.use(function(req, res, next) {
+  console.log(`[${new Date().toISOString()}] ${req.method} to ${req.url}`);
 
+  next();
+});
+
+// ENDPOINTS HERE:
 server.use("/api/zoos", zoosRouter)
 
 const port = 3300;
