@@ -28,8 +28,12 @@ server.get("/api/zoos/:id", (req, res) => {
   db("zoos")
     .where({ id })
     .first() // allows you to get out of array
-    .then(zoos => {
-      res.status(200).json(zoos);
+    .then(zoo => {
+      if (zoo) {
+        res.status(200).json(zoo);
+      } else {
+        res.status(400).json({ message: 'Record not found.'})
+      }
     })
     .catch(error => {
       res.status(500).json(error);
@@ -57,15 +61,23 @@ server.put("/api/zoos/:id", (req, res) => {
   const changes = req.body;
   const { id } = req.params;
 
-  db('zoos')
+  if (changes.name) {
+    db('zoos')
     .where({ id })
     .update(changes)
     .then(count => {
-      res.status(200).json(count);
+      if (count) {
+        res.status(200).json(count);
+      } else {
+        res.status(400).json({ message: 'Record not found.'})
+      }
     })
     .catch(error => {
       res.status(500).json(error);
     })
+  } else {
+    res.status(400).json({ error: "Please provide a name for the zoo." });
+  }
 });
 
 server.delete("/api/zoos/:id", (req, res) => {
