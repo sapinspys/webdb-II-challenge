@@ -1,7 +1,10 @@
 const express = require("express");
 
 // Custom imports
-const postsDb = require("../data/helpers/postDb.js");
+const knex = require("knex");
+const knexConfig = require("../knexfile");
+
+const db = knex(knexConfig.development);
 
 const router = express.Router();
 
