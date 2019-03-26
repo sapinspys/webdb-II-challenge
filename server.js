@@ -18,6 +18,10 @@ server.use(function(req, res, next) {
 });
 
 // ENDPOINTS HERE:
+server.get("/", (req, res) => {
+  res.send("WEB DB CHALLENGE II! Try /api/zoos or /api/bears.");
+});
+
 server.use("/api/zoos", zoosRouter);
 server.use("/api/bears", bearsRouter);
 
