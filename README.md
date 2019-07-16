@@ -11,7 +11,11 @@ In this challenge, you will write an API that can be used to manage _Cars_ store
 
 ## Project Set Up
 
-1. `npm i knex sqlite3`
+1. `npm install` to install nodemon
+2. `npm i knex sqlite3`
+3. `knex init` creates a knexfile.js
+4. Configure knexfile.js connection to `/data/car-dealer.db3`
+5. Add `useNullAsDefault: true` to knexfile.js
 
 ## Specifications
 
