@@ -16,6 +16,9 @@ In this challenge, you will write an API that can be used to manage _Cars_ store
 3. `knex init` creates a knexfile.js
 4. Configure knexfile.js connection to `/data/car-dealer.db3`
 5. Add `useNullAsDefault: true` to knexfile.js
+6. `knex migrate:make add_CARS_table`
+7. Configure cars migration file
+7. `knex migrate:latest`
 
 ## Specifications
 
