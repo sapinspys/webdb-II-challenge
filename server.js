@@ -18,7 +18,7 @@ server.use(function(req, res, next) {
 
 // Welcome Endpoint
 server.get("/", (req, res) => {
-  res.send("Web DB Challenge II \n Use '/api/cars' to GET and POST vehicles");
+  res.send(`Welcome to Web DB Challenge II. Use /api/cars to GET and POST vehicles.`);
 });
 
 server.use("/api/cars", carsRouter);
