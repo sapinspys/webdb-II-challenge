@@ -20,7 +20,9 @@ Database and Migrations
 5. Add `useNullAsDefault: true` to knexfile.js
 6. `knex migrate:make add_CARS_table`
 7. Populate cars migration file according to specifications
-7. `knex migrate:latest`
+8. `knex migrate:latest`
+9. `knex migrate:up` to run next migration
+10. `knex migrate:down` to undo last run migration
 
 Server
 
@@ -28,6 +30,12 @@ Server
 2. Create and populate index.js file
 3. Create and populate server.js file
 4. Create and populate router file(s)
+
+Seeds
+
+1. `knex seed:make 001-cars`
+2. Add truncate method per Luis' instructions
+3. `knex seed:run`
 
 ## Specifications
 
