@@ -11,6 +11,8 @@ In this challenge, you will write an API that can be used to manage _Cars_ store
 
 ## Project Set Up
 
+Database and Migrations
+
 1. `npm install` to install nodemon
 2. `npm i knex sqlite3`
 3. `knex init` creates a knexfile.js
@@ -19,6 +21,11 @@ In this challenge, you will write an API that can be used to manage _Cars_ store
 6. `knex migrate:make add_CARS_table`
 7. Populate cars migration file according to specifications
 7. `knex migrate:latest`
+
+Server
+
+1. `npm i express helmet`
+2. Create and populate index.js file
 
 ## Specifications
 
