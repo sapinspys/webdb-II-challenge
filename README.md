@@ -26,6 +26,8 @@ Server
 
 1. `npm i express helmet`
 2. Create and populate index.js file
+3. Create and populate server.js file
+4. Create and populate router file(s)
 
 ## Specifications
 
