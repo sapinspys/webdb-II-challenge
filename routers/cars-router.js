@@ -13,8 +13,8 @@ router.post("/", (req, res) => {
   if (newVehicle['VIN'] && newVehicle.make && newVehicle.model && newVehicle.milage) {
     db('cars')
       .insert(newVehicle)
-      .then(test => {
-        res.status(201).json(test)
+      .then(id => {
+        res.status(201).json(id)
       })
       .catch(error => {
         res.status(500).json(error)
@@ -33,5 +33,42 @@ router.get("/", (req, res) => {
       res.status(500).json(error)
     })
 }) 
+
+router.put("/:id", (req, res) => {
+  const changes = req.body;
+  const { id } = req.params;
+
+  db('cars')
+    .where({ id })
+    .update(changes)
+    .then(carsUpdated => {
+      if(carsUpdated) {
+        res.status(200).json({ message: "Vehicle information updated.", carsUpdated});
+      } else {
+        res.status(404).json({ error: 'Vehicle ID not found.'})
+      }
+    })
+    .catch(error => {
+      res.status(500).json(error)
+    })
+})
+
+router.delete("/:id", (req,res) => {
+  const { id } = req.params;
+
+  db('cars')
+    .where({ id })
+    .del()
+    .then(carsDeleted => {
+      if(carsDeleted) {
+        res.status(200).json({ message: "Vehicle entry was deleted.", carsDeleted});
+      } else {
+        res.status(404).json({ error: 'Vehicle ID not found.'})
+      }
+    })
+    .catch(error => {
+      res.status(500).json(error)
+    })
+})
 
 module.exports = router;
